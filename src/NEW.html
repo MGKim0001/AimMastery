@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<title> Aim Mastery -- Help you master FPS aiming skill </title>
+<link rel="icon" href="image/aim.ico" type="image/x-ico" sizes="16x16">
+
+<style>
+    
+html{
+    background: url(image/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}    
+    
+</style>
+
+</head>
+
+<style>
+    
+a:link {
+    color: deeppink;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: lime;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 6px 3px;
+    overflow: hidden;
+    background-color: lightslategrey;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: deepskyblue;
+}
+
+.active {
+    background-color: darkviolet;
+}
+
+</style>
+
+<body>
+
+<ul>
+  <li><a class="active" href="HOME.html">Home</a></li>
+  <li><a href="ABOUT.html">About</a></li>
+  <li><a href="FEEDBACK.html">Feedback</a></li>
+</ul>
+
+<h1 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;"><b>Welcome to aim master</b></h1>
+<pre style="color: red; font-family: courier; font-size: 100%; text-align: center;"> Our goal is to help you improving your aiming skill </pre>
+
+
+<h2 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;">Login Form</h2>
+
+<form action="/action_page.php">
+
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+</body>
+</html>
