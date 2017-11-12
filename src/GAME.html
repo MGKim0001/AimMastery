@@ -106,13 +106,79 @@ li a:hover {
 <h1 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;"><b>Welcome To Aim Master</b></h1>
 <pre style="color: red; font-family: courier; font-size: 100%; text-align: center;"> Our goal is to help you improving your aiming skill </pre>
 
-<h2 style="color:lime; font-family: fantasy; font-size: 160%; text-align: center;"><a href="NEW.html"></a>
-	<input class="MyButton" type="button" value="NEW USER" onclick="window.location.href='NEW.html'" />
-</h2>
+<p style="text-align: center">
 
-<h3 style="color:lime; font-family: fantasy; font-size: 160%; text-align: center;"><a href="EXISTING.html"></a>
-	<input class="MyButton" type="button" value="EXISTING USER" onclick="window.location.href='EXISTING.html'" />
-</h3>
+<canvas id="gameCanvas" height=600 width=1400>Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script type="text/javascript">
+	//global variable
+	var canvas;
+	var canvasContext;
+	
+	var ballX = 50;
+    var ballY = 50;
+    var ballSpeedX = 10;
+    var ballSpeedY = 4;
+	
+	window.onload = function(){
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+        
+        var fps = 30;
+        //1000 ms to wait between each time the function get called
+        setInterval(function(){
+            moveEverything();
+            drawEverything();
+        },1000/fps);
+    }
+	
+	function moveEverything(){
+        
+        ballX = ballX + ballSpeedX;
+        ballY = ballY + ballSpeedY;
+        
+        //bounce on the right wall
+        if(ballX > canvas.width){
+            ballSpeedX = -ballSpeedX;
+        }
+        //bounce on the left wall
+        if(ballX < 0){
+            ballSpeedX = -ballSpeedX;
+                
+        }
+        //bounce on the top wall
+        if(ballY < 0){
+            ballSpeedY = -ballSpeedY;
+        }
+        //bounce on the bottom wall
+        if(ballY > canvas.height){
+            ballSpeedY = -ballSpeedY;
+        }
+    }
+	
+	function drawEverything(){
+        //canvas
+        colorRect(0,0,canvas.width, canvas.height,'black');
+        //ball
+        colorCircle(ballX,ballY,10,'white');
+    }
+    
+    function colorCircle(centerX,centerY,radius,drawColor){
+        canvasContext.fillStyle=drawColor;
+        canvasContext.beginPath();
+        canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
+        canvasContext.fill();
+    }
+    
+    function colorRect(leftX, topY, width, height, drawColor){
+        canvasContext.fillStyle = drawColor;
+        canvasContext.fillRect(leftX, topY, width, height);
+    }
+
+  
+  
+</script>
+</p>
 
 </body>
 </html>
