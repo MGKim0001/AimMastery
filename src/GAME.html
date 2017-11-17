@@ -2,7 +2,7 @@
 <html>
 <head>
     
-<title> Aim Mastery -- Help you master FPS aiming skill </title>
+<title> Aim Master </title>
 <link rel="icon" href="../image/csgo.ico" type="image/x-ico" sizes="32x32">
 
 <style>
@@ -106,91 +106,8 @@ li a:hover {
 <pre><br><br><br></pre>
 
 <p style="text-align: center">
-
 <canvas id="gameCanvas" height=720 width=1280>Your browser does not support the HTML5 canvas tag.</canvas>
-
-
-<script type="text/javascript">
-	//global variable
-	var canvas;
-	var canvasContext;
-	
-	var ballX = 50;
-    var ballY = 50;
-    
-	var cursorX = 50;
-	var cursorY = 50;
-	
-	var CURSOR_SIZE = 40;
-	
-	
-	function calculateMousePos(evt){
-        var rect = canvas.getBoundingClientRect();
-        var root = document.documentElement;
-        var mouseX = evt.clientX - rect.left - root.scrollLeft;
-        var mouseY = evt.clientY - rect.top - root.scrollTop;
-        return {
-            x: mouseX,
-            y: mouseY
-        };
-    }
-	
-	window.onload = function(){
-        canvas = document.getElementById('gameCanvas');
-        canvasContext = canvas.getContext('2d');
-        
-        var fps = 30;
-		
-        setInterval(function(){    
-			moveEverything();
-            drawEverything();
-        },1000/fps);
-		
-		canvas.addEventListener('mousemove',
-			function(evt){
-				var mousePos = calculateMousePos(evt);
-                cursorX = mousePos.x - (CURSOR_SIZE/2);
-				cursorY = mousePos.y - (CURSOR_SIZE/2);
-			});
-	}
-	
-	function moveEverything(){
-		//move target randomly
-		ballX = Math.random()*1260;
-		ballY = Math.random()*700;
-		console.log(ballX);
-		console.log(ballY);
-    }
-	
-	function drawEverything(){
-        //canvas
-		//colorRect(0,0,canvas.width, canvas.height,'black');
-		var img = new Image(1280,720);
-		img.src = "../image/dust2.jpg";
-		canvasContext.drawImage(img,0,0);
-		
-		//ball
-        colorCircle(ballX,ballY,20,'red');
-		
-		//mouse cursor
-		colorRect(cursorX,cursorY,CURSOR_SIZE,CURSOR_SIZE,'blue');
-    }
-	
-    function colorCircle(centerX,centerY,radius,drawColor){
-        canvasContext.fillStyle=drawColor;
-        canvasContext.beginPath();
-        canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
-        canvasContext.fill();
-    }
-    
-    function colorRect(leftX, topY, width, height, drawColor){
-        canvasContext.fillStyle = drawColor;
-        canvasContext.fillRect(leftX, topY, width, height);
-    }
-
-  
-  
-</script>
+<script src="../src/actualGame.js"></script>
 </p>
 
 </body>
