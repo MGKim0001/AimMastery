@@ -14,6 +14,27 @@ html{
     background-size: cover;
 }
 
+input.MyButton {
+	width: 300px;
+	padding: 20px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 150%;
+	background: #3366cc;
+	color: #fff;
+	border: 1px solid #3366cc;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+}
+
+input.MyButton:hover {
+	color: #ffff00;
+	background: #000;
+	border: 1px solid #fff;
+}
+
 </style>
 
 </head>
@@ -85,9 +106,33 @@ li a:hover {
 <h1 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;"><b>Welcome To Aim Master</b></h1>
 <pre style="color: red; font-family: courier; font-size: 100%; text-align: center;"> Our goal is to help you improving your aiming skill </pre>
 
-<h3 style="color:lime; font-family: fantasy; font-size: 160%; text-align: left;"> <b>Source Code</b> </h3>
-<pre><a href="https://github.com/popopopi/AimMastery" target="_blank" style="font-family: fantasy; font-size: 100%; text-align: justify;"> Github </a></pre>
+<script>
+    function showInput() {
+        document.getElementById('display').innerHTML = document.getElementById("user_input").value;
+    }
+</script>
 
+<form>
+  <pre style="color: red; font-family: courier; font-size: 160%; text-align: center;">
+  User name:
+  <input type="text" name="message" id="user_input">
+  </pre>
+</form>
+
+  <pre style="text-align: center;">
+    <input type="submit" onclick="showInput();"><br/>
+  </pre>
+
+  <pre style="color: red; font-family: courier; font-size: 160%; text-align: center;">
+  Your name is:
+  <span id='display'></span>
+  And your score is:
+  <script>
+    var score = actualGame.score;
+    document.write(score);
+  </script>
+
+  </pre>
 
 </body>
 </html>

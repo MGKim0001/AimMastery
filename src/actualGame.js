@@ -17,6 +17,7 @@ var CURSOR_SIZE = 25;
 
 var score = 0;
 
+
 function calculateMousePos(evt){
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
@@ -28,29 +29,35 @@ function calculateMousePos(evt){
     };
 }
 
+
 window.onload = function(){
-    canvas = document.getElementById('gameCanvas');
-    canvasContext = canvas.getContext('2d');
+    startGame();
+    server();
+}
 
-    var fps = 30;
+function startGame(){
+  canvas = document.getElementById('gameCanvas');
+  canvasContext = canvas.getContext('2d');
 
-    setInterval(function(){
-		moveEverything();
-		canvas.addEventListener("click",collsionDetect);
-        drawEverything();
-    },1000/fps);
+  var fps = 30;
 
-	canvas.addEventListener('mousemove',
-		function(evt){
-			var mousePos = calculateMousePos(evt);
-            cursorX = mousePos.x - (CURSOR_SIZE/2);
-			cursorY = mousePos.y - (CURSOR_SIZE/2);
-		});
+  setInterval(function(){
+  moveEverything();
+  canvas.addEventListener("click",collsionDetect);
+      drawEverything();
+  },1000/fps);
+
+canvas.addEventListener('mousemove',
+  function(evt){
+    var mousePos = calculateMousePos(evt);
+          cursorX = mousePos.x - (CURSOR_SIZE/2);
+    cursorY = mousePos.y - (CURSOR_SIZE/2);
+  });
 }
 
 function reset(){
-	ballX = Math.floor(Math.random()*1280)+1;
-    ballY = Math.floor(Math.random()*720)+1;
+	 ballX = Math.floor(Math.random()*1280)+1;
+   ballY = Math.floor(Math.random()*720)+1;
 }
 
 function collsionDetect(){
@@ -86,8 +93,8 @@ function moveEverything(){
         ballSpeedY = -ballSpeedY;
     }
 
-	console.log(ballX);
-	console.log(ballY);
+	//console.log(ballX);
+	//console.log(ballY);
 }
 
 function drawEverything(){
@@ -118,4 +125,16 @@ function printScore(){
 	canvasContext.font="30px fantasy";
 	const msg = "score: " + score;
 	canvasContext.fillText(msg,100,100);
+}
+
+
+function server(){
+  xmlhttp = new XMLHttpRequest();
+   xmlhttp.open("GET","http://localhost:8888", true);
+   xmlhttp.onreadystatechange=function(){
+         if (xmlhttp.readyState==4 && xmlhttp.status==200){
+           string=xmlhttp.responseText;
+         }
+   }
+   xmlhttp.send();
 }
