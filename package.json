@@ -1,0 +1,17 @@
+{
+  "name": "AimMaster",
+  "version": "1.0.0",
+  "description": "Untapped sand potential",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "socket.io": "^1.7.4"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.8.x"
+  }
+}

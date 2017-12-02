@@ -18,6 +18,7 @@ var CURSOR_SIZE = 25;
 var score = 0;
 
 
+
 function calculateMousePos(evt){
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
@@ -32,7 +33,7 @@ function calculateMousePos(evt){
 
 window.onload = function(){
     startGame();
-    server();
+
 }
 
 function startGame(){
@@ -125,16 +126,4 @@ function printScore(){
 	canvasContext.font="30px fantasy";
 	const msg = "score: " + score;
 	canvasContext.fillText(msg,100,100);
-}
-
-
-function server(){
-  xmlhttp = new XMLHttpRequest();
-   xmlhttp.open("GET","http://localhost:8888", true);
-   xmlhttp.onreadystatechange=function(){
-         if (xmlhttp.readyState==4 && xmlhttp.status==200){
-           string=xmlhttp.responseText;
-         }
-   }
-   xmlhttp.send();
 }
