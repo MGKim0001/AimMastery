@@ -35,14 +35,6 @@ input.MyButton:hover {
 	border: 1px solid #fff;
 }
 </style>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  //var socket = io('http://aimmaster.bluemix.net:8080');
-  var socket = io('http://localhost:8080');
-  socket.on('connect', function(){console.log("socket connected")});
-  socket.on('event', function(data){});
-  socket.on('disconnect', function(){});
-</script>
 </head>
 
 <style>
@@ -111,21 +103,16 @@ canvas{
 <ul>
   <li><a class="active" href="index.html">Home</a></li>
   <li><a href="ABOUT.html">About</a></li>
-  <li><a href="FEEDBACK.html">Feedback</a></li>
 </ul>
 
 <pre><br><br><br></pre>
+
+<script src="/socket.io/socket.io.js"></script>
 
 <p style="text-align: center">
 <canvas id="gameCanvas" height=720 width=1280>Your browser does not support the HTML5 canvas tag.</canvas>
 <script src="./actualGame.js"></script>
 </p>
-
-<h1 style="color:lime; font-family: fantasy; font-size: 100%; text-align: center;">
-  <input class="MyButton" type="button" value="End Game" onclick="window.location.href='RESULT.html'"/>
-</h1>
-
-
 
 </body>
 </html>

@@ -17,7 +17,9 @@ var CURSOR_SIZE = 25;
 
 var score = 0;
 
+var socket = io('http://aimmaster.bluemix.net:8080');
 
+//var socket = io('http://localhost:8080');
 
 function calculateMousePos(evt){
     var rect = canvas.getBoundingClientRect();
@@ -70,6 +72,15 @@ function collsionDetect(){
 		score++;
 		reset();
 	}
+
+  var disx = 1200-cursorX;
+  var disy = 680-cursorY;
+  var dis = Math.sqrt(disx*disx + disy*disy);
+
+  if(dis < 30+CURSOR_SIZE){
+    socket.emit('get score',score);
+    location.href = "RESULT.html";
+  }
 }
 
 function moveEverything(){
@@ -111,6 +122,10 @@ function drawEverything(){
 	//mouse cursor
 	//colorCircle(cursorX,cursorY,CURSOR_SIZE,'blue');
 
+
+  //colorRect(1200,680,50,30,'green');
+  canvasContext.fillText("End", 1200, 680);
+
 	//print out score
 	printScore();
 }
@@ -120,6 +135,11 @@ function colorCircle(centerX,centerY,radius,drawColor){
     canvasContext.beginPath();
     canvasContext.arc(centerX, centerY, radius, 0, Math.PI*2, true);
     canvasContext.fill();
+}
+
+function colorRect(leftX, topY, width, height, drawColor){
+    canvasContext.fillStyle = drawColor;
+    canvasContext.fillRect(leftX, topY, width, height);
 }
 
 function printScore(){

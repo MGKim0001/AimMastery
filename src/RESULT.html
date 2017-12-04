@@ -100,39 +100,73 @@ li a:hover {
 <ul>
   <li><a class="active" href="index.html">Home</a></li>
   <li><a href="ABOUT.html">About</a></li>
-  <li><a href="FEEDBACK.html">Feedback</a></li>
 </ul>
 
 <h1 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;"><b>Welcome To Aim Master</b></h1>
 <pre style="color: red; font-family: courier; font-size: 100%; text-align: center;"> Our goal is to help you improving your aiming skill </pre>
 
+<script src="/socket.io/socket.io.js"></script>
+
+
 <script>
+  //var socket = io('http://localhost:8080');
+  var socket = io('http://aimmaster.bluemix.net:8080');
+
+  var score;
+  socket.on('send back score', function (data) {
+    score = data;
+    console.log(score);
+    document.getElementById("demo").innerHTML = window.score;
+  });
+
+    function sendBack(){
+      socket.emit('send back user and score', {userName: window.userName, score: score});
+    }
+</script>
+
+<script>
+    var userName
     function showInput() {
-        document.getElementById('display').innerHTML = document.getElementById("user_input").value;
+        userName = document.getElementById("user_input").value;
+        document.getElementById('display').innerHTML = userName;
     }
 </script>
 
 <form>
-  <pre style="color: red; font-family: courier; font-size: 160%; text-align: center;">
+  <pre style="color: deeppink; font-family: courier; font-size: 120%; text-align: center;">
   User name:
   <input type="text" name="message" id="user_input">
   </pre>
 </form>
 
   <pre style="text-align: center;">
-    <input type="submit" onclick="showInput();"><br/>
+    <input type="submit" onclick="showInput(); sendBack();"><br/>
   </pre>
 
-  <pre style="color: red; font-family: courier; font-size: 160%; text-align: center;">
+  <pre style="color: deeppink; font-family: courier; font-size: 120%; text-align: center;">
   Your name is:
   <span id='display'></span>
+  <br></br>
   And your score is:
+  <p id="demo"></p>
+  </pre>
+
   <script>
-    var score = actualGame.score;
-    document.write(score);
+    function printScoreBoard(){
+
+      var socket = io('https://aimmaster.bluemix.net:8080');
+      //var socket = io('http://localhost:8080');
+      socket.on('send scoreboard', function (data) {
+        console.log(data);
+        var myWindow = window.open("", "MsgWindow", "width=800,height=600");
+        myWindow.document.write("<table><tr><th>Player Name</th><th>Player Score</th></tr>" + data + "</table>");
+      });
+    }
   </script>
 
-  </pre>
+<pre style="color:lime; font-family: fantasy; font-size: 160%; text-align: center;">
+  <input class="MyButton" type="button" value="Score Board" onclick="printScoreBoard();"/>
+</pre>
 
 </body>
 </html>
