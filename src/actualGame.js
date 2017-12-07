@@ -17,9 +17,8 @@ var CURSOR_SIZE = 25;
 
 var score = 0;
 
-var socket = io('http://aimmaster.bluemix.net:8080');
-
 //var socket = io('http://localhost:8080');
+var socket = io();
 
 function calculateMousePos(evt){
     var rect = canvas.getBoundingClientRect();
