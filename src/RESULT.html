@@ -105,12 +105,12 @@ li a:hover {
 <h1 style="color:mediumspringgreen; font-family: fantasy; font-size: 360%; text-align: center;"><b>Welcome To Aim Master</b></h1>
 <pre style="color: red; font-family: courier; font-size: 100%; text-align: center;"> Our goal is to help you improving your aiming skill </pre>
 
-<script src="/socket.io/socket.io.js"></script>
 
+<script src="/socket.io/socket.io.js"></script>
 
 <script>
   //var socket = io('http://localhost:8080');
-  var socket = io('http://aimmaster.bluemix.net:8080');
+var socket = io();
 
   var score;
   socket.on('send back score', function (data) {
@@ -153,13 +153,13 @@ li a:hover {
 
   <script>
     function printScoreBoard(){
-
-      var socket = io('https://aimmaster.bluemix.net:8080');
+      var socket = io();
       //var socket = io('http://localhost:8080');
+
       socket.on('send scoreboard', function (data) {
         console.log(data);
         var myWindow = window.open("", "MsgWindow", "width=800,height=600");
-        myWindow.document.write("<table><tr><th>Player Name</th><th>Player Score</th></tr>" + data + "</table>");
+        myWindow.document.write("<!DOCTYPE html><html><body><table><tr><th>Player Name</th><th>Player Score</th></tr>" + data + "</table></body></html>");
       });
     }
   </script>
