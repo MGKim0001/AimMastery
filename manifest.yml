@@ -7,4 +7,4 @@ applications:
   host: aimmaster
   disk_quota: 1024M
   command: node app.js
-  timeout: 80
+  timeout: 180

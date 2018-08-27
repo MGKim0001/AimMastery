@@ -2,8 +2,10 @@
 var express = require("express");
 var app = express();
 
-var server  = app.listen(8080);
-var io = require('socket.io').listen(server);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+http.listen(process.env.PORT || 8080);
+
 
 var clientScore;
 
@@ -17,9 +19,17 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-console.log("Listening on http://aimmaster.bluemix.net:8080" );
+app.enable('trust proxy');
+app.use (function (req, res, next) {
+  if (req.secure) {
+    res.redirect('http://' + req.headers.host + req.url);
+  } else {
+    next();
+  }
+});
 
-//console.log("Listening on http://localhost:8080" );
+
+console.log("Listening on http://localhost:8080" );
 
 io.on('connection', function(socket){
   console.log('game.html connected');
@@ -86,7 +96,7 @@ connection.query('CREATE TABLE if not exists playerinfo (name VARCHAR(20), score
 var htmlTable = "";
 
 function getTable(){
-  connection.query('SELECT name,score from playerinfo WHERE 1=1 ORDER BY name,score DESC', function(err, rows, fields) {
+  connection.query('SELECT name,score from playerinfo WHERE 1=1 ORDER BY score DESC', function(err, rows, fields) {
     if (!err){
       console.log('print table succeed');
       //create HTML5
@@ -97,6 +107,7 @@ function getTable(){
 
       //console.log(htmlTable);
       socket.emit('send scoreboard', htmlTable);
+      connection.end();
     }
     else{
       console.log('Error while print table.');
