@@ -15,4 +15,3 @@ MinGi Kim (kim2075@purdue.edu)
 ##### **Demo**
 ![Welcome Page](http://funkyimg.com/i/2KK3V.jpeg)
 ![Game](http://funkyimg.com/i/2KK3V.jpeg)
-
