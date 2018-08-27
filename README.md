@@ -13,6 +13,6 @@ MinGi Kim (kim2075@purdue.edu)
 * Hosting: IBM Bluemix
 * Database: clearDB provided by Bluemix
 ##### **Demo**
-![Welcome Page](https://postimg.cc/image/59pztjchp/)
-![Game](https://postimg.cc/image/vusip420d/)
+![Welcome Page](http://funkyimg.com/i/2KK3V.jpeg)
+![Game](http://funkyimg.com/i/2KK3V.jpeg)
 
